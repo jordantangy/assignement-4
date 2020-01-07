@@ -1,4 +1,5 @@
-#include<stdbool.h>
+#pragma once
+
 #define NUM_LETTERS 26
 
 typedef enum {FALSE=0, TRUE=1} boolean;
@@ -6,8 +7,11 @@ typedef struct node {
 char letter;
 long unsigned int count;
 struct node* children[NUM_LETTERS];
-} Trie;
+} Node;
 
-void addTrie(Trie** head, char letter);
-void remove(Trie** head, char letter);
-bool find(const Trie* head, char letter);
+
+void addTrie(Node** head, char word);
+
+
+void print(const Node* head);
+
