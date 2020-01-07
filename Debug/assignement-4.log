@@ -1,3 +1,0 @@
-﻿  trie.c
-trie.obj : error LNK2019: unresolved external symbol _add referenced in function _main
-D:\Visual Studio-workspace\assignement-4\Debug\assignement-4.exe : fatal error LNK1120: 1 unresolved externals
