@@ -10,7 +10,7 @@ struct node* children[NUM_LETTERS];
 } Node;
 
 
-void addTrie(Node** head, char word);
+void add(Node** head, char word);
 
 
 void print(const Node* head);

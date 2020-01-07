@@ -1,20 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "trie.h"
-
-void addTrie(Node** head, char* word) {
-
-}
-
 
 
 void print(const Node* head) {
 
 }
 
+
 int main() {
-	char* worde = 0;
-	while (scanf("%s", worde) != EOF) {
-		fprintf("%c\n", worde);
+	char letter ='\0';
+	Node *head = NULL;
+	#pragma warning(suppress : 4996)
+	while (scanf("%c", &letter) == 0) {
+		add(&head, letter);
 	}
 	return 0;
 }
