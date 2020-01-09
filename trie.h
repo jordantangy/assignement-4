@@ -11,7 +11,7 @@ struct node* children[NUM_LETTERS];
 } Node;
 
 
-void add(Node** root, char word);
+void add(Node* root, char* word);
 
 
 void print(const Node* root);
