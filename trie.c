@@ -14,14 +14,12 @@ boolean check_if_exist(Node* root, int index){
 	}
 }
 
-char if_space(){
-    char c;
+char if_space(char c){
     int b = 0;
     int *t;
     int a = 0;
 	while (1)
 	{
-        c = getchar();
         a = c;
          if (a == 32)
 		    {
@@ -41,10 +39,9 @@ Node* Search_letter(Node* root, char c,int index){
         return root; 
     }
 
-
 void add(Node* root){
 
-        char d = if_space();
+        
 
          int ascii_value = 0; 
         int index = 0; 
@@ -52,7 +49,7 @@ void add(Node* root){
          char c;
         while (c != EOF){
             c = getchar();
-          
+            char d = if_space(c);
             ascii_value = tolower(c);		
 		    index = NUM_LETTERS-(ascii_max-ascii_value)-1;
             if(check_if_exist(root,index) == TRUE){
