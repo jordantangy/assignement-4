@@ -11,8 +11,9 @@ struct node* children[NUM_LETTERS];
 } Node;
 
 
-void add(Node* root);
-
-
+Node* add(Node* root,char c);
+Node* Search_letter(Node* root, char c,int index);
+int if_space(char c);
+boolean check_if_exist(Node* root, int index);
 void print(const Node* root);
 
