@@ -13,35 +13,9 @@ boolean check_if_exist(Node* root, int index){
 	if(root->children[index] != NULL) {
 		return TRUE;
 	}
-	else {
-		return FALSE;
-	}
+	return FALSE;
 }
 
-
-
-//The add function checks for each letter if its node already exists in the tree.
-//For example, a word that starts with the the letter 'a' already exists in the tree. Let's say that now, we try to add a a word that also starts with 'a' another time,
-//this function will return a pointer to the node with the letter 'a', and from there, the add function will continue adding other letters.
-//Such that we wont have multiple pointer to the node that contains the letter 'a' at the beginning of the word.
-Node* Search_letter(Node* root, char c,int index){
-        
-        if(root->children[index]->letter != c){
-          return root;
-        }
-        else 
-        {
-          c = getchar();
-          int ascii_value = tolower(c);		
-		      index = NUM_LETTERS-(ascii_max-ascii_value)-1;
-          
-          root = root->children[index];
-         
-          
-          return Search_letter(root,c,index);
-        }
-         
-    }
 
   Node* add(Node* root, char c){
 
@@ -50,11 +24,10 @@ Node* Search_letter(Node* root, char c,int index){
         int index = 0; 
 
         ascii_value = tolower(c);		
-		    index = NUM_LETTERS-(ascii_max-ascii_value)-1;
-
-            if(check_if_exist(root,index) == TRUE){ 
-            root =  Search_letter(root,c,index);
-            }
+		index = NUM_LETTERS-(ascii_max-ascii_value)-1;
+        if(check_if_exist(root,index)){ 
+            return root->children[index];
+        }
 
 		Node* temp = malloc(sizeof(Node)); 
 		temp->letter=c;
@@ -80,11 +53,10 @@ Node* Search_letter(Node* root, char c,int index){
 int main() {
 
 	Node* root = malloc(sizeof(Node));
-  Node* const theroot = root;
+    Node* const theroot = root;
 	root->letter = 0;
 	root->count = 0;
-	for (size_t i = 0; i < NUM_LETTERS; i++)
-	{
+	for (size_t i = 0; i < NUM_LETTERS; i++){
 		root->children[i] =  NULL;
 	}
   
@@ -100,6 +72,6 @@ int main() {
       root = theroot;
       continue;
     }
-    root = add(root,c);
+    root = add(&root,c);
   }
 }
