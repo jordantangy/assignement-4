@@ -7,7 +7,6 @@
 
 
 //The first three functions are helping functions that are used in the add function.
-
 //Returns true if there is a pointer (address) in the children array at place index , return false if null.
 boolean check_if_exist(Node* root, int index){
 	if(root->children[index] != NULL) {
@@ -21,7 +20,8 @@ boolean check_if_exist(Node* root, int index){
 
       
         int ascii_value = 0; 
-        int index = 0; 
+        int index = 0;
+        
 
         ascii_value = tolower(c);		
 		index = NUM_LETTERS-(ascii_max-ascii_value)-1;
@@ -38,40 +38,50 @@ boolean check_if_exist(Node* root, int index){
 			}
 		root->children[index] = temp;
     root = temp;
+    
 
     return root;
-
-    
-  
-
-
-   
-
 	}
+
+  void printWord(){
+
+  }
 
 
 int main() {
 
 	Node* root = malloc(sizeof(Node));
-    Node* const theroot = root;
+  Node* const theroot = root;
 	root->letter = 0;
 	root->count = 0;
 	for (size_t i = 0; i < NUM_LETTERS; i++){
 		root->children[i] =  NULL;
 	}
-  
- 
     char c;
+    int max_word_length = 0;
+    int temp = 0;
     while(1){
       c = getchar();
       if(c ==  EOF){
+        root->count++;
+        if(temp > max_word_length){
+        max_word_length = temp;
+      }
          break;
     }
     if(c == ' '){
-      root->count = (root->count)+1;
+      root->count++;
       root = theroot;
+      if(temp > max_word_length){
+        max_word_length = temp;
+      }
+      temp = 0;
       continue;
     }
-    root = add(&root,c);
+    temp++;
+    root = add(root,c);
+   
   }
+
 }
+
