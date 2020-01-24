@@ -43,9 +43,21 @@ boolean check_if_exist(Node* root, int index){
     return root;
 	}
 
-  void printWord(){
-
+Node* find(Node* root){
+  
+  for (size_t i = 0; i < NUM_LETTERS; i++)
+  {
+   if(root->children[i] != NULL){
+     root = root->children[i];
+     break;
+   }
   }
+  return root;
+  
+  
+}
+
+ 
 
 
 int main() {
@@ -83,5 +95,38 @@ int main() {
    
   }
 
+root = theroot;
+char ans[max_word_length];
+
+  for (size_t i = 0; i < NUM_LETTERS; i++)
+  {
+    if(check_if_exist(root,i)){
+      for (size_t j = 0; j < max_word_length; j++)
+      {
+        root=find(root);
+        ans[j] = root->letter;
+        if(root->count > 0){
+          printf("%s\n",ans);
+          printf("%ld",root->count);
+          j = max_word_length-1;
+          root = theroot;
+        }
+
+      }
+      
+    }
+    
+
 }
+
+}
+    
+
+ 
+    
+
+    
+  
+
+ 
 
