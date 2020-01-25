@@ -38,12 +38,11 @@ Node* add(Node* root, char c){
 void print(Node* root, char* worde, int counter) {
     boolean hasSon = FALSE;
     Node* temp = NULL;
-    char* tempWorde = NULL;
+    char* tempWorde = (char*)malloc((sizeof(char) * counter) + 1);
     for (size_t i = 0; i < NUM_LETTERS; i++) {
         if (root->children[i] != NULL) {
             hasSon = TRUE;
             temp = root->children[i];
-            tempWorde = (char*)malloc((sizeof(char) * counter) + 1);
             char* wP = worde;
             char* tP = tempWorde;
             for (size_t i = 0; i < counter; i++) {
@@ -51,10 +50,11 @@ void print(Node* root, char* worde, int counter) {
                 tP++;
                 wP++;
             }
-            free(worde);
+            free((void*)worde);
             *tP = root->letter;
             tP++;
             *tP = '\0';
+            break;
         }
     }
     if (hasSon) {
@@ -83,17 +83,19 @@ int main() {
             root->count++;
         break;
         }
-        if(c == ' '){
+        if(c == ' ' || c == '\n' || c == '\t'){
             root->count++;
             root = theRoot;
             continue;
         }
-        root = add(root,c);
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+            root = add(root, c);
+        }
     }
     root = theRoot;
     while (root != NULL) {
         char* temp = (char*)malloc(sizeof(char));
-        temp = '\0';
+        *temp = '\0';
         print(root, temp, 1);
         root = theRoot;
     }
