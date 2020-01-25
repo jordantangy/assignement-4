@@ -7,7 +7,7 @@ typedef enum {FALSE=0, TRUE=1} boolean;
 typedef struct node {
 char letter;
 long unsigned int count;
-struct node* children[NUM_LETTERS] = { 0 };
+struct node* children[NUM_LETTERS];
 } Node;
 
 
@@ -16,5 +16,5 @@ Node* Search_letter(Node* root, char c,int index);
 int if_space(char c);
 boolean check_if_exist(Node* root, int index);
 Node* find(Node* root);
-void print(const Node* root);
+void print(Node* root, char* worde, int counter);
 

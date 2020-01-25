@@ -35,14 +35,14 @@ Node* add(Node* root, char c){
 }
 
 
-void print(Node* root, char* worde[], int counter) {
+void print(Node* root, char* worde, int counter) {
     boolean hasSon = FALSE;
     Node* temp = NULL;
     char* tempWorde = NULL;
-    for (size_t i = 0; i <= NUM_LETTERS; i++) {
-        if (root->letter[i] != NULL) {
+    for (size_t i = 0; i < NUM_LETTERS; i++) {
+        if (root->children[i] != NULL) {
             hasSon = TRUE;
-            temp = root->letter[i];
+            temp = root->children[i];
             tempWorde = (char*)malloc((sizeof(char) * counter) + 1);
             char* wP = worde;
             char* tP = tempWorde;
@@ -71,14 +71,12 @@ void print(Node* root, char* worde[], int counter) {
 int main() {
     Node* root = malloc(sizeof(Node));
     Node* const theRoot = root;
-    root->letter = NULL;
+    root->letter = 0;
     root->count = 0;
     for (size_t i = 0; i <= NUM_LETTERS; i++){
         root->children[i] =  0;
     }
     char c;
-    int max_word_length = 0;
-    int temp = 0;
     while(1){
         c = getchar();
         if(c == EOF){
