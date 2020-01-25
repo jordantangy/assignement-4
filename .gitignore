@@ -3,4 +3,5 @@
 *.vcxproj
 *.filters
 *.user
+*.out
 /Debug/

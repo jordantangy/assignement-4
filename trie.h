@@ -7,7 +7,7 @@ typedef enum {FALSE=0, TRUE=1} boolean;
 typedef struct node {
 char letter;
 long unsigned int count;
-struct node* children[NUM_LETTERS];
+struct node* children[NUM_LETTERS] = { 0 };
 } Node;
 
 
