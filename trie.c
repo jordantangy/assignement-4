@@ -51,9 +51,11 @@ void print(Node* root, char* worde, int counter) {
                 wP++;
             }
             free((void*)worde);
-            *tP = root->letter;
-            tP++;
-            *tP = '\0';
+            if (root->letter != NULL) {
+                *tP = '\0';
+                tP--;
+                *tP = root->letter;
+            }
             break;
         }
     }
@@ -62,8 +64,8 @@ void print(Node* root, char* worde, int counter) {
         return;
     }
     else {
-        printf("%s\t%d", worde, counter);
-        free(root);
+        printf("%s\t%d", worde, root->count);
+        free((void*)root);
     }
 }
  
