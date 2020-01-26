@@ -75,30 +75,29 @@ void printBack(Node* root, char* word, int counter) {
 }
 
 
- 
-
-int main() {
+int main(int argc, char* argv[]) {
+    printf("%d", argc);
     size_t wordCounter = 0;
     size_t tempCounter = 0;
     Node* root = malloc(sizeof(Node));
     Node* const theRoot = root;
     root->letter = '\0';
     root->count = 0;
-    for (size_t i = 0; i < NUM_LETTERS; i++){
-        root->children[i] =  0;
+    for (size_t i = 0; i < NUM_LETTERS; i++) {
+        root->children[i] = 0;
     }
     char c;
-    while(1){
+    while (1) {
         c = getchar();
-        if(c == EOF){
+        if (c == EOF) {
             root->count++;
             if (tempCounter > wordCounter) {
                 wordCounter = tempCounter;
                 tempCounter = 0;
             }
-        break;
+            break;
         }
-        if(c == ' ' || c == '\n' || c == '\t'){
+        if (c == ' ' || c == '\n' || c == '\t') {
             root->count++;
             root = theRoot;
             if (tempCounter > wordCounter) {
@@ -114,9 +113,7 @@ int main() {
     }
     root = theRoot;
     char* temp = (char*)malloc(wordCounter + 1);
-    //print(root, temp, 0);
+    print(root, temp, 0);
     printBack(theRoot, temp, 0);
     free(temp);
-
-   
 }
