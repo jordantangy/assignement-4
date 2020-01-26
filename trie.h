@@ -17,4 +17,5 @@ int if_space(char c);
 boolean check_if_exist(Node* root, int index);
 Node* find(Node* root);
 void print(Node* root, char* worde, int counter);
+void printBack(Node* root, char* word, int counter);
 
