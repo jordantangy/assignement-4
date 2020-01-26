@@ -78,7 +78,6 @@ void end(Node* root) {
     Node* son = 0;
     for (size_t i = 0; i < NUM_LETTERS; i++) {
         if (root->children[i] != NULL) {
-            hasSon = TRUE;
             son = root->children[i];
             end(son);
         }
@@ -133,5 +132,5 @@ int main(int argc, char* argv[]) {
         printBack(root, temp, 0);
         free(temp);
     }
-    end(wordCounter);
+    end(root);
 }
