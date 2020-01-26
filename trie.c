@@ -37,50 +37,33 @@ Node* add(Node* root, char c){
 
 void print(Node* root, char* worde, int counter) {
     boolean hasSon = FALSE;
-    Node* temp = NULL;
-    char* tempWorde = (char*)malloc((sizeof(char) * counter) + 1);
-    *tempWorde = '\0';
-    for (size_t i = 0; i <= NUM_LETTERS; i++) {
+    Node* son = NULL;
+    for (size_t i = 0; i < NUM_LETTERS; i++) {
         if (root->children[i] != NULL) {
             hasSon = TRUE;
-            temp = root->children[i];
-            char* wP = worde;
-            char* tP = tempWorde;
-            for (size_t i = 0; i < counter; i++) {
-                *tP = *wP;
-                tP++;
-                wP++;
-            }
-            free(worde);
-            if (root->letter == 0) {
-                *tP = '\0';
-                tP--;
-                *tP = root->letter;
-            }
-            break;
+            son = root->children[i];
         }
     }
     if (hasSon) {
-        counter++;
-        print(temp, tempWorde, counter);
+        worde[counter] = son->letter;
+        print(son, worde, counter++);
     }
     else {
-        free(worde);
+        worde[counter] = '\0';
         if (root->count > 0) {
-            printf("%s%c\t%ld", tempWorde, root->letter, root->count);
+            printf("%s\t%ld", worde, root->count);
         }
-        if (root != NULL) {
-        free(root);
-        root = NULL;
-        }
+        
     }
 }
  
 
 int main() {
+    size_t wordeCounter = 0;
+    size_t tempCounter = 0;
     Node* root = malloc(sizeof(Node));
     Node* const theRoot = root;
-    root->letter = 0;
+    root->letter = '\0';
     root->count = 0;
     for (size_t i = 0; i <= NUM_LETTERS; i++){
         root->children[i] =  0;
@@ -90,22 +73,29 @@ int main() {
         c = getchar();
         if(c == EOF){
             root->count++;
+            if (tempCounter > wordeCounter) {
+                wordeCounter = tempCounter;
+                tempCounter = 0;
+            }
         break;
         }
         if(c == ' ' || c == '\n' || c == '\t'){
             root->count++;
             root = theRoot;
+            if (tempCounter > wordeCounter) {
+                wordeCounter = tempCounter;
+                tempCounter = 0;
+            }
             continue;
         }
         if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
             root = add(root, c);
+            tempCounter++;
         }
     }
     root = theRoot;
-    while (root != NULL) {
-        char* temp = (char*)malloc(sizeof(char));
-        print(root, temp, 1);
-        root = theRoot;
-    }
+    char* temp = (char*)malloc(wordeCounter);
+    print(root, temp, 0);
+    free(temp);
    
 }
