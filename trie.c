@@ -74,9 +74,20 @@ void printBack(Node* root, char* word, int counter) {
     }
 }
 
+void end(Node* root) {
+    Node* son = 0;
+    for (size_t i = 0; i < NUM_LETTERS; i++) {
+        if (root->children[i] != NULL) {
+            hasSon = TRUE;
+            son = root->children[i];
+            end(son);
+        }
+    }
+    free(root);
+}
+
 
 int main(int argc, char* argv[]) {
-    printf("%d", argc);
     size_t wordCounter = 0;
     size_t tempCounter = 0;
     Node* root = malloc(sizeof(Node));
@@ -112,8 +123,15 @@ int main(int argc, char* argv[]) {
         }
     }
     root = theRoot;
-    char* temp = (char*)malloc(wordCounter + 1);
-    print(root, temp, 0);
-    printBack(theRoot, temp, 0);
-    free(temp);
+    if (argc == 1) {
+        char* temp = (char*)malloc(wordCounter + 1);
+        print(root, temp, 0);
+        free(temp);
+    }
+    else {
+        char* temp = (char*)malloc(wordCounter + 1);
+        printBack(root, temp, 0);
+        free(temp);
+    }
+    end(wordCounter);
 }
