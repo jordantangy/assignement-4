@@ -73,6 +73,8 @@ void printBack(Node* root, char* word, int counter) {
         }
     }
 }
+
+
  
 
 int main() {
@@ -82,7 +84,7 @@ int main() {
     Node* const theRoot = root;
     root->letter = '\0';
     root->count = 0;
-    for (size_t i = 0; i <= NUM_LETTERS; i++){
+    for (size_t i = 0; i < NUM_LETTERS; i++){
         root->children[i] =  0;
     }
     char c;
